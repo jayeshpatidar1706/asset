@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  asset: one
+  assigned_at: 2023-10-17 21:10:38
+  return_at: 2023-10-17 21:10:38
+
+two:
+  asset: two
+  assigned_at: 2023-10-17 21:10:38
+  return_at: 2023-10-17 21:10:38
