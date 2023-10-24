@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,40 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_231_017_210_444) do
-  create_table 'asset_histories', force: :cascade do |t|
-    t.integer 'asset_id', null: false
-    t.time 'assigned_at'
-    t.time 'return_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.integer 'employee_id', null: false
-    t.string 'asset_name'
-    t.string 'employee_name'
-    t.index ['asset_id'], name: 'index_asset_histories_on_asset_id'
-    t.index ['employee_id'], name: 'index_asset_histories_on_employee_id'
+ActiveRecord::Schema[7.0].define(version: 2023_10_24_180724) do
+  create_table "asset_histories", force: :cascade do |t|
+    t.integer "asset_id", null: false
+    t.time "assigned_at"
+    t.time "return_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "employee_id", null: false
+    t.string "asset_name"
+    t.string "employee_name"
+    t.index ["asset_id"], name: "index_asset_histories_on_asset_id"
+    t.index ["employee_id"], name: "index_asset_histories_on_employee_id"
   end
 
-  create_table 'assets', force: :cascade do |t|
-    t.string 'name'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.date 'purchase_date'
-    t.integer 'employee_id'
-    t.index ['employee_id'], name: 'index_assets_on_employee_id'
+  create_table "assets", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "purchase_date"
+    t.integer "employee_id"
+    t.index ["employee_id"], name: "index_assets_on_employee_id"
   end
 
-  create_table 'employees', force: :cascade do |t|
-    t.string 'name'
-    t.string 'department'
-    t.decimal 'age'
-    t.string 'address'
-    t.date 'DOB'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.string "department"
+    t.decimal "age"
+    t.string "address"
+    t.date "DOB"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_foreign_key 'asset_histories', 'assets'
-  add_foreign_key 'asset_histories', 'employees'
-  add_foreign_key 'assets', 'employees'
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "jti", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["jti"], name: "index_users_on_jti", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "asset_histories", "assets"
+  add_foreign_key "asset_histories", "employees"
+  add_foreign_key "assets", "employees"
 end
