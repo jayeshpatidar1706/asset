@@ -3,6 +3,7 @@
 # class AssetsController
 class AssetsController < ApplicationController
   def index
+    # debugger
     @assets = Asset.all
     render json: @assets, status: 200
   end

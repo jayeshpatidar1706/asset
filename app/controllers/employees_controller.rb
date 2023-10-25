@@ -2,6 +2,8 @@
 
 # class EmployeesController
 class EmployeesController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     @employee = Employee.all
     render json: @employee, status: :ok

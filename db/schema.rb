@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_24_180724) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_25_164355) do
   create_table "asset_histories", force: :cascade do |t|
     t.integer "asset_id", null: false
     t.time "assigned_at"
@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_180724) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
-    t.string "department"
+    t.string "department"i
     t.decimal "age"
     t.string "address"
     t.date "DOB"
@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_180724) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "jti", null: false
+    t.string "role", default: "Employee"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["jti"], name: "index_users_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

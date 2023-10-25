@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   get 'return_asset/:id', to: 'assets_history#return_asset'
 
   post 'issue_asset', to: 'assets_history#issue_asset'
-  resources :employee
+  resources :employees
   resources :assets, only: %i[create index update show]
 end

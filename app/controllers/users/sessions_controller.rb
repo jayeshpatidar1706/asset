@@ -14,14 +14,12 @@ class Users::SessionsController < Devise::SessionsController
   
   def respond_to_on_destroy
     jwt_payload = JWT.decode(
-      request.headers['Authorization'].split(' ')[1], 
-      Rails.application.credentials.fetch(:secret_key_base)
-      ).first
+      request.headers['Authorization'].split(' ')[1],Rails.application.credentials.fetch(:secret_key_base)).first
     current_user=User.find(jwt_payload['sub'])
     if current_user
     render json: {
       status: 200,
-      message: "signed up succesfully"
+      message: "signed out succesfully"
     }, status: :ok
     else
       render json: {
