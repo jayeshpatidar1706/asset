@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 # class AssetsHistoryController
-class AssetsHistoryController < ApplicationController
+class AssetHistoryController < ApplicationController 
+  load_and_authorize_resource
+  
   def index
+    
     @history = AssetHistory.all
     render json: @history, status: :ok
   end
@@ -13,8 +16,6 @@ class AssetsHistoryController < ApplicationController
   end
 
   def return_asset
-    # debugger
-
     @h = AssetHistory.where(return_at: nil)
     @history = @h.find_by(asset_id: params[:id])
     if @history.nil?
@@ -25,18 +26,28 @@ class AssetsHistoryController < ApplicationController
     end
   end
 
+  def Ehistory
+ 
+  end
+
+
+  def myhistory
+    @history = AssetHistory.where(user_id: current_user.id)
+    render json:@history, status: :ok
+  end
+
   def issue_asset
     # debugger
     @asset_id = params[:assets_history][:asset_id]
     @assethistory = AssetHistory.where(asset_id: @asset_id)
     if @assethistory.empty?
       issue
-      render json: { data: 'aaaaaaa' }, status: :ok
+      render json: { data: 'issued succesfully' }, status: :ok
     else
       @a = @assethistory.find_by(return_at: nil)
       if @a.nil?
         issue
-        render json: { data: 'bbbbbbb' }, status: :ok
+        render json: { data: 'issued successfully' }, status: :ok
       else
         render json: { data: 'unsuccessful' }, status: :ok
       end
@@ -46,7 +57,7 @@ class AssetsHistoryController < ApplicationController
   protected
 
   def assethistory_params
-    params.require(:assets_history).permit(:asset_id, :employee_id, :asset_name, :employee_name)
+    params.require(:assets_history).permit(:asset_id, :user_id, :asset_name, :employee_name)
   end
 
   def issue
@@ -55,4 +66,5 @@ class AssetsHistoryController < ApplicationController
 
     @history.update(assigned_at: Time.now)
   end
+
 end

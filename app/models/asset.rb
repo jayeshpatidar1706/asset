@@ -2,4 +2,5 @@
 
 # class Asset
 class Asset < ApplicationRecord
+    has_many :asset_histories
 end

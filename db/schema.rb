@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_25_195705) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_26_164812) do
   create_table "asset_histories", force: :cascade do |t|
     t.integer "asset_id", null: false
     t.time "assigned_at"
     t.time "return_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "employee_id", null: false
     t.string "asset_name"
-    t.string "employee_name"
+    t.string "user_name"
+    t.integer "user_id", null: false
     t.index ["asset_id"], name: "index_asset_histories_on_asset_id"
-    t.index ["employee_id"], name: "index_asset_histories_on_employee_id"
+    t.index ["user_id"], name: "index_asset_histories_on_user_id"
   end
 
   create_table "assets", force: :cascade do |t|
@@ -29,8 +29,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_25_195705) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "purchase_date"
-    t.integer "employee_id"
-    t.index ["employee_id"], name: "index_assets_on_employee_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,4 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_25_195705) do
   end
 
   add_foreign_key "asset_histories", "assets"
+  add_foreign_key "asset_histories", "users"
 end
+
+# rspec rubocop damge_description enumForRole 

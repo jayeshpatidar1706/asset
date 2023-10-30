@@ -1,7 +1,8 @@
 # frozen_string_literal: true
-
 # class AssetsController
 class AssetsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     # debugger
     @assets = Asset.all

@@ -5,12 +5,12 @@ class EmployeesController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @employee = Employee.all
+    @employee = USer.all
     render json: @employee, status: :ok
   end
 
   def create
-    @employee = Employee.new(emp_params)
+    @employee = User.new(emp_params)
     if @employee.save
       render json: @employee, status: :ok
     else
@@ -19,7 +19,7 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    @employee = Employee.find(params[:id])
+    @employee = User.find(params[:id])
     if @employee.update(emp_params)
       render json: @employee, status: :ok
     else
@@ -28,13 +28,13 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @employee = Employee.find(params[:id])
+    @employee = User.find(params[:id])
     render json: @employee, status: :ok
   end
 
   protected
 
   def emp_params
-    params.require(:employee).permit(:name, :department, :age, :address, :DOB)
+    params.require(:user).permit(:email:, :password, :name, :department, :age, :address, :BOD)
   end
 end

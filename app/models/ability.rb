@@ -5,9 +5,10 @@ class Ability
 
   def initialize(user)
     can :read , Employee 
-    can :read, AssetHistory  
+    can :read , Asset
+    can :read , AssetHistory
     return if user.role.eql?("Employee")
-    
-    can :manage , :all
+
+    can :manage, :all
   end
 end
