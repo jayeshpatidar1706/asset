@@ -8,13 +8,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, 
          :jwt_authenticatable, jwt_revocation_strategy: self
 
-ROLES= %w{HR Employee}
-
-  ROLES.each do |role_name|
-    define_method "#{role_name}?" do
-    role == role_name
-    end
-  end
+# ROLES = %w{HR Employee}
+enum role: %i{ HR Employee}
+#   ROLES.each do |role_name|
+#     define_method "#{role_name}?" do
+#     role == role_name
+#     end
+#   end
 
 
   def jwt_payload

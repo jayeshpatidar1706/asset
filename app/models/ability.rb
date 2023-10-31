@@ -4,11 +4,11 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read , Employee 
+    can :read , User ,user_id: user.id
     can :read , Asset
     can :read , AssetHistory
-    return if user.role.eql?("Employee")
-
+    # return if user.role.eql?("Employee")
+    return if user.Employee?
     can :manage, :all
-  end
+  
 end
