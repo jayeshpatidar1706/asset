@@ -54,4 +54,3 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_26_164812) do
   add_foreign_key "asset_histories", "assets"
   add_foreign_key "asset_histories", "users"
 end
-

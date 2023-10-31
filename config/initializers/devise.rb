@@ -14,7 +14,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '7845700272dc73ef071a3b5f18940c22e44aec650c078b1ac852df2a1f0732ba74f34315e478526ee3c8995bf4249a6f94d67813d87b690b9a0654f6f7754969'
+  # config.secret_key = '7845700272dc73ef071a3b5f18940c22e44aec650c0
+  # 78b1ac852df2a1f0732ba74f34315e478526ee3c8995bf4249a6f94d67813d87b690b9a0654f6f7754969'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +127,8 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '74f376ec75f53786fe9516e45847098955aa924658c84b0bbf7f5d24125f2b3b93dc975d96b589bdaa19f8a57900fdfe2aece0319d8a3a190c3632575e41d2f8'
+  # config.pepper = '74f376ec75f53786fe9516e45847098955aa924658c84b0bbf7f5d
+  # 24125f2b3b93dc975d96b589bdaa19f8a57900fdfe2aece0319d8a3a190c3632575e41d2f8'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -310,15 +312,15 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
- 
-    config.jwt do |jwt|
-      jwt.secret = Rails.application.credentials.fetch(:secret_key_base)
-      jwt.dispatch_requests=[
-        ['POST',%r{^/users/sign_in$}]
-      ]
-      jwt.revocation_requests=[
-        ['DELETE',%r{^/users/sign_out}]
-      ]
-      jwt.expiration_time = 120.days.to_i 
-    end
- end
+
+  config.jwt do |jwt|
+    jwt.secret = Rails.application.credentials.fetch(:secret_key_base)
+    jwt.dispatch_requests = [
+      ['POST', %r{^/users/sign_in$}]
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/users/sign_out}]
+    ]
+    jwt.expiration_time = 120.days.to_i
+  end
+end
