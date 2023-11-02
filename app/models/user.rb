@@ -3,7 +3,12 @@
 # class User
 class User < ApplicationRecord
   has_many :asset_histories
-  has_many :assets
+  belongs_to :assets , optional: true
+
+  validates :name, length: { minimum: 2, maximum: 50 }
+  validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
   include Devise::JWT::RevocationStrategies::JTIMatcher
   # Include default devise modules. Others available are:
   # :confirmable,:lockable, :timeoutable, :trackable and :omniauthable
